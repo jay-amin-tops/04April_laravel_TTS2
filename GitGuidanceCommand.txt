@@ -1,0 +1,11 @@
+1) create an account on github
+2) download gitbash from https://git-scm.com/downloads
+3) create repo in github and clone it to local machin
+4) git clone repo_url (eg:https://github.com/jay-amin-tops/04April_laravel_TTS2.git)
+5) open gitbash in cloned repo 
+
+// for sync local data with git
+
+6) git add .
+7) git commit -m "yr msg"
+8) git push
