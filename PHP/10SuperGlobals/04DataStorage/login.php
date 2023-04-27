@@ -3,7 +3,21 @@ require_once("header.php");
 // require_once("header45.php")
 require_once("header.php");
 require_once("header.php");
+if (isset($_POST['login'])) {
+    
+    echo "<pre>";
+    print_r($_COOKIE);
+    echo "</pre>";
+    if ($_COOKIE['username'] == $_REQUEST['username'] && $_COOKIE['password'] == $_REQUEST['password']) {
+        echo "login success";
+        $_SESSION['Data'] = "ABC";
+        $_SESSION['UserData'] = array("username"=>$_REQUEST['username'],"password"=>$_REQUEST['password']);
+        header("location:welcome.php");
+    }else{
+        echo "Invalid user";
+    }
 
+}
 ?>
 <style>
     /* * {
@@ -17,6 +31,7 @@ require_once("header.php");
         <div class="col-4 offset-4">
             <div class="card">
                 <div class="card-header text-center"><h3>Login</h3></div>
+                <form method="post">
                 <div class="card-body">
                     <div class="row mt-2">
                         <div class="col">
@@ -40,6 +55,7 @@ require_once("header.php");
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
