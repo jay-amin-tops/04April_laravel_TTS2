@@ -1,9 +1,4 @@
-<?php
-
-session_start();
-
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +6,9 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://use.fontawesome.com/releases/v5.7.2/css/all.css');
+    </style>
     <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.css">
     <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -33,10 +31,21 @@ session_start();
           <a class="nav-link" href="contact.php">Contact</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="products.php">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.php">Cart</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="about.php">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
+          <?php 
+          if (isset($_SESSION['UserData'])) { ?>
+            <a class="nav-link" href="logout.php">Logout</a>
+          <?php }else{ ?> 
+            <a class="nav-link" href="login.php">Login</a>
+            <?php } ?>
         </li>
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
