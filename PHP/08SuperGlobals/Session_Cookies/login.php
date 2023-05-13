@@ -3,7 +3,11 @@ require_once("headerfile.php");
 // require_once("headerfile.php"); 
 // require_once("headerfile.php"); 
 // require_once("headerfile.php"); 
-// require_once("headerfile.php"); 
+// require_once("headerfile.php");
+
+if (isset($_SESSION['UserData'])) {
+    header("location:dashboard.php");
+}
 if (isset($_REQUEST['btn-login'])) {
     echo "<pre>";
     print_r($_COOKIE['username']);
