@@ -4,6 +4,24 @@ require_once("headerfile.php");
 // require_once("headerfile.php"); 
 // require_once("headerfile.php"); 
 // require_once("headerfile.php"); 
+if (isset($_REQUEST['btn-login'])) {
+    echo "<pre>";
+    print_r($_COOKIE['username']);
+    echo "</pre>";
+    if ($_POST['username'] != "" && $_POST['password'] != "" ) {
+        if ($_POST['username'] == $_COOKIE['username'] && $_POST['password'] == $_COOKIE['password'] ) {
+            echo "Login Success";
+            $_SESSION['UserData'] = array("usernmae"=>$_COOKIE['username'],"password"=>$_COOKIE['password'],"email"=>$_COOKIE['email']);
+            header("location:dashboard.php");
+        }else{
+            echo "Invalid user";
+
+        }
+    }else{
+        echo "User Name and password required";
+    }
+    
+}
 ?>
 <!-- <h2>Login</h2> -->
 <div class="container">
