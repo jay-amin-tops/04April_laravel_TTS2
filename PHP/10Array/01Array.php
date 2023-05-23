@@ -47,6 +47,11 @@ $multDimension = array("scl"=>array("10th"=>array("Abc"=>array("Hindi"=>"90","Gu
 echo "<pre>";
 print_r($multDimension);
 print_r($multDimension['scl']["10th"]['Abc']['Maths']);
+
+print_r(["test","checking"]);
+print_r([12,45,78]);
+print_r([12,78=>45,78]);
+print_r([12,"test"=>45,78]);
 ?>
 
     <ul class="chunklist chunklist_reference">
