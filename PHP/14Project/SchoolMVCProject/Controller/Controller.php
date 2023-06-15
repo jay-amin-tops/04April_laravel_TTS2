@@ -23,7 +23,7 @@ class Controller{
                  $this->baseURL .= $value."/";
             }
         }
-        echo $this->baseURL;
+        // echo $this->baseURL;
         // echo "</pre>";
         if (isset($_SERVER['PATH_INFO'])) {
             switch ($_SERVER['PATH_INFO']) {
@@ -41,6 +41,15 @@ class Controller{
                     include_once("Views/header.php");
                     include_once("Views/contact.php");
                     include_once("Views/footer.php");
+                    break;
+                case '/login':
+                    include_once("Views/signinpage.php");
+                    break;
+                case '/registration':
+                    include_once("Views/registration.php");
+                    echo "<pre>";
+                    print_r($_POST);
+                    echo "</pre>";
                     break;
                 
                 default:
