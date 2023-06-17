@@ -1,11 +1,14 @@
 <?php
-class Controller{
+require_once("Model/Model.php");
+
+class Controller extends Model{
     // Static Base URL START
     // public $baseURL = "http://localhost/laravel/04April_laravel_shailesh_TTS2/PHP/14Project/MVC/";
     // Static Base URL END
     public $baseURL = "";
     
     public function __construct() {
+        parent::__construct();
         // echo "<pre>";
         // echo $this->baseURL;
         // echo "<br>";
@@ -47,9 +50,36 @@ class Controller{
                     break;
                 case '/registration':
                     include_once("Views/registration.php");
-                    echo "<pre>";
-                    print_r($_POST);
-                    echo "</pre>";
+                    if (isset($_POST['regist'])) {
+                        # code...
+                        // echo "<pre>";
+                        // print_r($_POST);
+                        // echo "</pre>";
+                        $hobbiesData = implode("",$_POST['hobby']);
+                        $fullname = $_POST['fname']." ".$_POST['lname'];
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        unset($_POST['fname']);
+                        unset($_POST['lname']);
+                        $Data = array_merge($_POST,array("hobby"=>$hobbiesData,"fullname"=>$fullname));
+                        // echo "<pre>";
+                        // print_r($_POST);
+                        // echo "</pre>";
+                        
+                        // Other way to send Form Data to Modle START.
+                        // $Data = array("username"=>$_POST['username'],
+                        // "fullname"=>$fullname,
+                        // "email"=>$_POST['email'],
+                        // "mobile"=>$_POST['mobile'],
+                        // "password"=>$_POST['password'],
+                        // "city"=>$_POST['city'],
+                        // "gender"=>$_POST['gender'],
+                        // "hobby"=>$hobbiesData);
+                        // Other way to send Form Data to Modle END.
+
+                        $this->insert("users",$Data);
+
+                    }
                     break;
                 
                 default:

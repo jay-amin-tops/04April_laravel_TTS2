@@ -1,0 +1,12 @@
+
+Error Date Time >> 17-06-2023 02:52:01 PM
+Error Msg >> Unknown database 'masterdatabase1'
+
+Error Date Time >> 17-06-2023 02:52:07 PM
+Error Msg >> Unknown database 'masterdatabase1'
+
+Error Date Time >> 17-06-2023 02:52:48 PM
+Error Msg >> Unknown database 'masterdatabase1'
+
+Error Date Time >> 17-06-2023 02:53:28 PM
+Error Msg >> Unknown database 'masterdatabase1'
