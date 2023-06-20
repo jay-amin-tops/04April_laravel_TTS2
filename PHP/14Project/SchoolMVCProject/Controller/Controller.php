@@ -8,6 +8,7 @@ class Controller extends Model{
     public $baseURL = "";
     
     public function __construct() {
+        ob_start();
         parent::__construct();
         // echo "<pre>";
         // echo $this->baseURL;
@@ -45,8 +46,17 @@ class Controller extends Model{
                     include_once("Views/contact.php");
                     include_once("Views/footer.php");
                     break;
+                case '/admin':
+                    echo "welcome admin";
+                    break;
                 case '/login':
                     include_once("Views/signinpage.php");
+                    if (isset($_POST['login'])) {
+                        $LoginRes = $this->login($_POST['username'],$_POST['password']);
+                        echo "<pre>";
+                        print_r($LoginRes);
+                        echo "</pre>";
+                    }
                     break;
                 case '/registration':
                     include_once("Views/registration.php");
@@ -77,8 +87,18 @@ class Controller extends Model{
                         // "hobby"=>$hobbiesData);
                         // Other way to send Form Data to Modle END.
 
-                        $this->insert("users",$Data);
+                        $InsertRes = $this->insert("users",$Data);
+                        // echo "<pre>";
+                        // print_r($InsertRes);
+                        if($InsertRes['Code']){
+                            echo "<script>
+                            alert('REgister Success!!!')
+                            window.location.href='login';
+                            </script>";
+                            // header("location:login");
+                        }else{
 
+                        }
                     }
                     break;
                 
@@ -89,6 +109,8 @@ class Controller extends Model{
         }else{
             header("location:home");
         }
+        ob_end_flush();
+
     }
 
 }

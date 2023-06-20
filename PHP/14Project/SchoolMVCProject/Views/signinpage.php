@@ -24,12 +24,12 @@
             <form method="POST" class="appointment-form" id="appointment-form">
                 <h2>Login</h2>
                 <div class="form-group-1">
-                    <input type="text" name="name" id="name" placeholder="Your User Name" required />
+                    <input type="text" name="username" id="username" placeholder="Your User Name" required />
                     <input type="password" name="password" id="password" placeholder="password" required />    
                 </div>
                
                 <div class="form-submit">
-                    <input type="submit" name="submit" id="submit" class="submit" value="Request an appointment" />
+                    <input type="submit" name="login" id="login" class="submit" value="Request an appointment" />
                 </div>
                 <a href="registration">Click here for create new account</a>
             </form>

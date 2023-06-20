@@ -26,6 +26,34 @@ class Model{
         // print_r($this->connection);
         // echo "</pre>";
     }
+    function login($uname,$password) {
+        $SQL = "SELECT * FROM users WHERE password='$password' AND (username='$uname' OR email='$uname' OR mobile='$uname')";
+        $SQLEx = $this->connection->query($SQL);
+        // $FetchData = $SQLEx->fetch_all(); // returns an array index/numerical multidimensional
+        // $FetchData = $SQLEx->fetch_array(); // returns an array index and associative
+        // $FetchData = $SQLEx->fetch_column(); // returns an array
+        // $FetchData = $SQLEx->fetch_row(); // returns an array single numeric array
+        // $FetchData = $SQLEx->fetch_assoc(); // returns an array single
+        // print_r($SQLEx) ;
+
+        // Object access by -> array access by [index] 
+        // echo "<pre>";
+        // print_r($FetchData[0][1]);
+        // print_r($FetchData);
+        // print_r($FetchData->username);
+        // echo "</pre>";
+        if ($SQLEx->num_rows > 0) {
+            $FetchData = $SQLEx->fetch_object();
+            $ResponseData['Data']= $FetchData;    
+            $ResponseData['Msg']= "Success";    
+            $ResponseData['Code']= "1";    
+        }else{
+            $ResponseData['Data']= "0";    
+            $ResponseData['Msg']= "Try again";    
+            $ResponseData['Code']= "0";    
+        }
+        return $ResponseData;
+    }
     // function select() : Array {
     //     $SQL = "";
     //     $SQLEx = $this->connection->query($SQL);
@@ -36,10 +64,20 @@ class Model{
         // print_r(array_keys($data));
         $clms = implode(",",array_keys($data));
         $vals = implode("','",$data);
-        echo $SQL = "INSERT INTO $tbl($clms)VALUES('$vals')";
+        $SQL = "INSERT INTO $tbl($clms)VALUES('$vals')";
         // $SQL = "INSERT INTO tblname(clm)VALUES('')";
         $SQLEx = $this->connection->query($SQL);
-        echo $SQLEx;
+        // echo $SQLEx;
+        if ($SQLEx) {
+            $ResponseData['Data']= "1";    
+            $ResponseData['Msg']= "Success";    
+            $ResponseData['Code']= "1";    
+        }else{
+            $ResponseData['Data']= "0";    
+            $ResponseData['Msg']= "Try again";    
+            $ResponseData['Code']= "0";    
+        }
+        return $ResponseData;
     }
     // function update() : Array {
     //     $SQL = "";
