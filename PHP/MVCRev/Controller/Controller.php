@@ -80,7 +80,21 @@ class Controller extends Model{
                     // include_once("Views/footer.php");
                     break;
                 case '/admindashboard':
-                    echo "Welcome to admin dashboard";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/dashboard.php");
+                    include_once("Views/admin/footer.php");
+                    // echo "Welcome to admin dashboard";
+                    break;
+                case '/viewallusers':
+                    $AllUsers = $this->select("users");
+                    // echo "<pre>";
+                    // print_r($AllUsers);
+                    // echo "</pre>";
+                    // exit;
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/viewusers.php");
+                    include_once("Views/admin/footer.php");
+                    // echo "Welcome to admin dashboard";
                     break;
                 default:
                     # code...

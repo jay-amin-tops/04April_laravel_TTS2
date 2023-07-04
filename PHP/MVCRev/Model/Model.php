@@ -52,6 +52,24 @@ class Model{
         }
         return $ResData;
     }
+    function select($tbl) {
+        $SQL = "SELECT * FROM $tbl";
+        $SQLEx = $this->db->query($SQL);
+        if ($SQLEx->num_rows > 0) {
+            while ($Data = $SQLEx->fetch_object()) {
+                $FetchData[]=$Data;
+            }
+            $ResData['Data'] =$FetchData;
+            $ResData['Msg'] = "Success";
+            $ResData['Code'] = "1";
+        }else{
+            $ResData['Data'] = "0";
+            $ResData['Msg'] = "try again";
+            $ResData['Code'] = "0";
+
+        }
+        return $ResData;
+    }
 }
 
 
