@@ -85,6 +85,14 @@ class Controller extends Model{
                     include_once("Views/admin/footer.php");
                     // echo "Welcome to admin dashboard";
                     break;
+                case '/deleteuser':
+                    $Res = $this->delete("users",array("id"=>$_GET['userid']));
+                        echo "<pre>";
+                        print_r($Res['Code']);
+                        if ($Res['Code'] == 1) {
+                            header("location:viewallusers");
+                        }   
+                    break;
                 case '/viewallusers':
                     $AllUsers = $this->select("users");
                     // echo "<pre>";
@@ -95,6 +103,19 @@ class Controller extends Model{
                     include_once("Views/admin/viewusers.php");
                     include_once("Views/admin/footer.php");
                     // echo "Welcome to admin dashboard";
+                    if (isset($_POST['addnewuser'])) {
+                    
+                        array_pop($_POST);
+                        $Hobbies = implode(",",$_POST['chk']);
+                        unset($_POST['chk']);
+                        $Data = array_merge($_POST,array("hobbies"=>$Hobbies));
+                        $Res = $this->insert("users",$Data);
+                        echo "<pre>";
+                        print_r($Res['Code']);
+                        if ($Res['Code'] == 1) {
+                            header("location:viewallusers");
+                        }    
+                    }
                     break;
                 default:
                     # code...

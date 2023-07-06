@@ -70,6 +70,28 @@ class Model{
         }
         return $ResData;
     }
+    function delete($tbl,$where) {
+        $SQL = "DELETE FROM $tbl WHERE";
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = '$value' AND";
+        }
+        $SQL = rtrim($SQL,"AND");
+        // echo $SQL;
+        // exit;
+        $SQLEx = $this->db->query($SQL);
+        if ($SQLEx > 0) {
+            
+            $ResData['Data'] =1;
+            $ResData['Msg'] = "Success";
+            $ResData['Code'] = "1";
+        }else{
+            $ResData['Data'] = "0";
+            $ResData['Msg'] = "try again";
+            $ResData['Code'] = "0";
+
+        }
+        return $ResData;
+    }
 }
 
 
