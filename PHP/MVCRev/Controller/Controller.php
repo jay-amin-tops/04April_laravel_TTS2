@@ -85,6 +85,19 @@ class Controller extends Model{
                     include_once("Views/admin/footer.php");
                     // echo "Welcome to admin dashboard";
                     break;
+                case '/edituser':
+                    $id = $_GET['userid'];
+                    $UserDataById = $this->select("users",array("id"=>$id,"role_id"=>"2"),array("city"=>"users.city = city.city_id"));
+                    $allCitiesData = $this->select("city");
+                    // echo "<pre>";
+                    // print_r($UserDataById);
+                    // exit;
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/update.php");
+                    include_once("Views/admin/footer.php");
+
+                    // echo "Welcome to admin dashboard";
+                    break;
                 case '/deleteuser':
                     $Res = $this->delete("users",array("id"=>$_GET['userid']));
                         echo "<pre>";

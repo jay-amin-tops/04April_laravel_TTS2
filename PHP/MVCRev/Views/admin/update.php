@@ -33,44 +33,70 @@
 
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th> SrNo </th>
-                    <th> User Name </th>
-                    <th> Gender </th>
-                    <th> Mobile </th>
-                    <th> Email </th>
-                    <th> Action </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
+            <form method="post">
+              <div class="row mt-3">
+                <div class="col-8">
+                  <?php //echo "<pre>"; print_r($UserDataById['Data'][0]->username); ?>
+                  <input type="text" value="<?php echo  $UserDataById['Data'][0]->username;?>" class="form-control" name="username" id="username">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <input type="text" value="<?php echo  $UserDataById['Data'][0]->email;?>" class="form-control" name="email" id="email">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <input type="text" value="<?php echo  $UserDataById['Data'][0]->mobile;?>" class="form-control" name="mobile" id="mobile">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <input type="radio" value="Male" name="gender" <?php if ($UserDataById['Data'][0]->gender == "Male") { echo "checked"; } ?> id="Male"> <label for="Male">Male</label>
+                  <input type="radio" value="Female" <?php if ($UserDataById['Data'][0]->gender == "Female") { echo "checked"; } ?> name="gender" id="Female"> <label for="Female">Female</label>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <?php $hobby = explode(",",$UserDataById['Data'][0]->hobbies); 
                   // echo "<pre>";
-                  // print_r($AllUsers);
+                  // print_r($hobby);
+                  // if (in_array("Cricket",$hobby)) {
+                  //   echo "inside crick";
+                  // }
+                  // if (in_array("Reading",$hobby)) {
+                  //   echo "inside Reading";
+                  // }
                   // echo "</pre>";
-                  // exit;
-                  $i = 0;
-                  foreach ($AllUsers['Data'] as $key => $value) {
-                    $i++; ?>
-                    <tr>
-                      <td><?php echo $i; ?></td>
-                      <td><?php echo $value->username; ?></td>
-                      <td><?php echo $value->gender; ?></td>
-                      <td><?php echo $value->mobile; ?></td>
-                      <td><?php echo $value->email; ?></td>
-                      <td>
-                      <?php if ($value->role_id == 2) { ?>
-                        <a href="edituser?userid=<?php echo $value->id ?>"><i class="mdi mdi-account-edit"></i></a>
-                        <a href="deleteuser?userid=<?php echo $value->id ?>"><i class="mdi mdi-delete"></i></a>
-                      <?php }  ?>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
+                  ?>
+                  
+                  <input type="checkbox" <?php  if (in_array("Cricket",$hobby)) { echo "checked"; } ?>  value="Cricket" name="chk[]" id="Cricket"> <label for="Cricket">Cricket</label>
+                  <input type="checkbox" <?php  if (in_array("Music",$hobby)) { echo "checked"; } ?> value="Music" name="chk[]" id="Music"> <label for="Music">Music</label>
+                  <input type="checkbox" <?php  if (in_array("Reading",$hobby)) { echo "checked"; } ?> value="Reading" name="chk[]" id="Reading"> <label for="Reading">Reading</label>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                 <?php 
+                //  echo "<pre>"; print_r($UserDataById['Data']); 
+                 //echo "<pre>"; print_r($allCitiesData); 
+                 ?>
+                <select name="city" class="form-control" id="">
+                  <option value="">-- Select City --</option>
+                  <?php foreach ($allCitiesData['Data'] as $key => $value) { ?>
+                    <option <?php if ($UserDataById['Data'][0]->city ==$value->city_id ) {
+                      echo "selected";
+                    } ?>  value="<?php echo $value->city_id; ?>"><?php echo $value->city_title; ?></option>
+                  <?php } ?>  
+                </select>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <input type="submit" name="btn" id="btn">
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -98,7 +124,7 @@
             </div>
             <div class="mt-2">
               <label for="">Email</label>
-              <input type="email" id="email"  class="form-control" placeholder="Enter ur email" name="email" />
+              <input type="email" id="email" class="form-control" placeholder="Enter ur email" name="email" />
             </div>
             <div class="mt-2">
               <label for="">Mobile </label>
